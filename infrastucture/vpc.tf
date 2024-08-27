@@ -38,7 +38,7 @@ resource "aws_subnet" "ha-terraform-project-db-subnets" {
   availability_zone = tolist(data.aws_availability_zones.available.names)[each.value]
   tags = {
     Name = each.key
-    type = "db-private"
+    type = "private"
   }
 }
 
@@ -87,3 +87,4 @@ resource "aws_route_table_association" "db-private-associations" {
   for_each       = aws_subnet.ha-terraform-project-db-subnets
   subnet_id      = each.value.id
 }
+

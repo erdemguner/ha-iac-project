@@ -2,7 +2,7 @@ resource "aws_rds_cluster" "ha-terraform-project-rds-cluster" {
   cluster_identifier = "ha-terraform-project-rds-cluster"
   engine             = "mysql"
   engine_version     = "8.0.39"
-  availability_zones = ["us-west-2a", "us-west-2b"]
+  availability_zones = ["eu-west-1a", "eu-west-1b"]
   # secretlar sektör standardı nasılsa güncellenecek (durula sor)
   master_username         = "admin"
   master_password         = "admin1234"
@@ -12,8 +12,11 @@ resource "aws_rds_cluster" "ha-terraform-project-rds-cluster" {
 }
 
 resource "aws_db_subnet_group" "ha-terraform-project-db-subnet-group" {
-  name       = "ha-terraform-project-db-subnet-group"
-  subnet_ids = ["aws_subnet.ha_terraform_project-db_subnet_1","aws_subnet.ha_terraform_project-db_subnet_2"]
+  name = "ha-terraform-project-db-subnet-group"
+  subnet_ids = [
+    aws_subnet.ha-iac-project-db-subnet-1.id,
+    aws_subnet.ha-iac-project-db-subnet-2.id
+  ]
 
 }
 

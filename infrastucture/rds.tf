@@ -23,14 +23,14 @@ resource "aws_db_subnet_group" "ha-terraform-project-db-subnet-group" {
 
 }
 
-# resource "aws_rds_cluster_instance" "ha-terraform-project-rds-cluster-instance" {
-#   count                = 1
-#   identifier           = "ha-terraform-project-rds-cluster-instance-${count.index}"
-#   cluster_identifier   = aws_rds_cluster.ha-terraform-project-rds-cluster.id
-#   instance_class       = "db.t4g.micro"
-#   engine               = aws_rds_cluster.ha-terraform-project-rds-cluster.engine
-#   engine_version       = aws_rds_cluster.ha-terraform-project-rds-cluster.engine_version
-#   publicly_accessible  = false
-#   db_subnet_group_name = aws_db_subnet_group.ha-terraform-project-db-subnet-group.name
+resource "aws_rds_cluster_instance" "ha-terraform-project-rds-cluster-instance" {
+  count                = 1
+  identifier           = "ha-terraform-project-rds-cluster-instance-${count.index}"
+  cluster_identifier   = aws_rds_cluster.ha-terraform-project-rds-cluster.id
+  instance_class       = "db.t4g.micro"
+  engine               = aws_rds_cluster.ha-terraform-project-rds-cluster.engine
+  engine_version       = aws_rds_cluster.ha-terraform-project-rds-cluster.engine_version
+  publicly_accessible  = false
+  db_subnet_group_name = aws_db_subnet_group.ha-terraform-project-db-subnet-group.name
 
-# }
+}

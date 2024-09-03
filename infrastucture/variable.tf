@@ -42,3 +42,8 @@ variable "db_subnets_cidr" {
     ha_iac_project_db_subnet_2 = "10.0.21.0/24"
   }
 }
+
+variable "ssl-certificate-id" {
+  type = string
+  default = "arn:aws:acm:eu-west-1:287011713487:certificate/4a240cb6-4cf7-4e43-b11a-ba0fbf11e81d"
+}
